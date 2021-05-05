@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31005.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlockChain_fabric", "BlockChain_fabric\BlockChain_fabric.csproj", "{87FDFEE7-88B8-4A69-BF5A-96B9C536DBA2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{80F74DB8-7C01-4E74-B746-BDF6A7D1BF97}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL", "BL\BL.csproj", "{584CB45B-2998-4306-86F5-0BA43111AA55}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GSchema", "GSchema\GSchema.csproj", "{C3A10B51-90C9-46AB-B350-A6535A3C2B27}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MongoDb.Identity.Core", "MongoDb.Identity.Core\MongoDb.Identity.Core.csproj", "{152F21A2-44A9-46AB-A4EC-32459520DB2D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{87FDFEE7-88B8-4A69-BF5A-96B9C536DBA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87FDFEE7-88B8-4A69-BF5A-96B9C536DBA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87FDFEE7-88B8-4A69-BF5A-96B9C536DBA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87FDFEE7-88B8-4A69-BF5A-96B9C536DBA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80F74DB8-7C01-4E74-B746-BDF6A7D1BF97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80F74DB8-7C01-4E74-B746-BDF6A7D1BF97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80F74DB8-7C01-4E74-B746-BDF6A7D1BF97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80F74DB8-7C01-4E74-B746-BDF6A7D1BF97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{584CB45B-2998-4306-86F5-0BA43111AA55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{584CB45B-2998-4306-86F5-0BA43111AA55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{584CB45B-2998-4306-86F5-0BA43111AA55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{584CB45B-2998-4306-86F5-0BA43111AA55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3A10B51-90C9-46AB-B350-A6535A3C2B27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3A10B51-90C9-46AB-B350-A6535A3C2B27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3A10B51-90C9-46AB-B350-A6535A3C2B27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3A10B51-90C9-46AB-B350-A6535A3C2B27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{152F21A2-44A9-46AB-A4EC-32459520DB2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{152F21A2-44A9-46AB-A4EC-32459520DB2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{152F21A2-44A9-46AB-A4EC-32459520DB2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{152F21A2-44A9-46AB-A4EC-32459520DB2D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4093A1ED-1FB0-4A67-BD66-F89975093815}
+	EndGlobalSection
+EndGlobal
