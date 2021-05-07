@@ -8,6 +8,9 @@
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />
 		<PackageReference Include="Microsoft.Extensions.Options" Version="5.0.0" />
 		<PackageReference Include="MongoDB.Driver" Version="2.11.5" />
-		<PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\MerkleTree\MerkleTree.csproj" />
+	  <ProjectReference Include="..\Sawtooth\Sawtooth.csproj" />
 	</ItemGroup>
 </Project>

@@ -6,9 +6,11 @@
 	<ItemGroup>
 		<ProjectReference Include="..\DAL\DAL.csproj" />
 		<ProjectReference Include="..\GSchema\GSchema.csproj" />
+		<ProjectReference Include="..\MongoDb.Identity.Core\MongoDb.Identity.Core.csproj" />
 	</ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
   </ItemGroup>
+  
 
 </Project>

@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewData["Title"] = "Register";
+}
+
+@model BlockChain_fabric.Models.RegisterViewModel
+<div>
+
+
+    <div class="login_wrapper">
+
+
+        <div id="register" >
+            <section class="login_content">
+                <form asp-action="Register" asp-controller="Login" method="post">
+                    <h1>Create Account</h1>
+                    <div>
+                        <input type="text" class="form-control" asp-for="name" id="name" required name="name" placeholder="Name" />
+                    </div>
+                    <div>
+                        <input type="email" class="form-control" asp-for="emailId" id="emailID" required name="emailID" placeholder="EMail ID" />
+                    </div>
+                    <div>
+                        <input type="password" asp-for="password" id="password" required class="form-control" placeholder="Password" />
+                    </div>
+                    <div>
+                        <input type="text" class="form-control" asp-for="phoneNo" id="phoneNo" required name="phoneNo" placeholder="Phone No" />
+                    </div>
+
+                    <div>
+                        <select class="form-control" asp-for="gender" id="gender" required name="gender" placeholder="Phone No">
+                            @foreach (var itm in ViewBag.gender)
+                            {
+                                <option value="@itm">@itm</option>
+                            }
+                        </select>
+                    </div>
+                    <br />
+                    <div>
+                        <input type="number" class="form-control" asp-for="age" id="age" required name="age" placeholder="Age" />
+                    </div>
+                    <br />
+                    <div>
+                        <button class="btn btn-primary submit" type="submit">Submit</button>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <div class="separator">
+                        <p class="change_link">
+                            Already a member ?
+                            <a asp-action="" asp-controller="Login" class="to_register"> Log in </a>
+                        </p>
+
+                        <div class="clearfix"></div>
+                        <br />
+
+                        <div>
+                            <h1><i class="fa fa-paw"></i> Block Chain!</h1>
+                            <p>©2016 All Rights Reserved. Block Chain</p>
+                        </div>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </div>
+</div>
+

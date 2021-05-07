@@ -3,15 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31005.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlockChain_fabric", "BlockChain_fabric\BlockChain_fabric.csproj", "{87FDFEE7-88B8-4A69-BF5A-96B9C536DBA2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlockChain_fabric", "BlockChain_fabric\BlockChain_fabric.csproj", "{87FDFEE7-88B8-4A69-BF5A-96B9C536DBA2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{80F74DB8-7C01-4E74-B746-BDF6A7D1BF97}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL", "DAL\DAL.csproj", "{80F74DB8-7C01-4E74-B746-BDF6A7D1BF97}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL", "BL\BL.csproj", "{584CB45B-2998-4306-86F5-0BA43111AA55}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BL", "BL\BL.csproj", "{584CB45B-2998-4306-86F5-0BA43111AA55}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GSchema", "GSchema\GSchema.csproj", "{C3A10B51-90C9-46AB-B350-A6535A3C2B27}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GSchema", "GSchema\GSchema.csproj", "{C3A10B51-90C9-46AB-B350-A6535A3C2B27}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MongoDb.Identity.Core", "MongoDb.Identity.Core\MongoDb.Identity.Core.csproj", "{152F21A2-44A9-46AB-A4EC-32459520DB2D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MongoDb.Identity.Core", "MongoDb.Identity.Core\MongoDb.Identity.Core.csproj", "{152F21A2-44A9-46AB-A4EC-32459520DB2D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MerkleTree", "MerkleTree\MerkleTree.csproj", "{440F4DD4-C4B5-4AF1-A99D-2C043DAF8A30}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sawtooth", "Sawtooth\Sawtooth.csproj", "{140F353A-A85C-4946-AFC0-2EE04E8FED3B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +43,14 @@ Global
 		{152F21A2-44A9-46AB-A4EC-32459520DB2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{152F21A2-44A9-46AB-A4EC-32459520DB2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{152F21A2-44A9-46AB-A4EC-32459520DB2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{440F4DD4-C4B5-4AF1-A99D-2C043DAF8A30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{440F4DD4-C4B5-4AF1-A99D-2C043DAF8A30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{440F4DD4-C4B5-4AF1-A99D-2C043DAF8A30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{440F4DD4-C4B5-4AF1-A99D-2C043DAF8A30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{140F353A-A85C-4946-AFC0-2EE04E8FED3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{140F353A-A85C-4946-AFC0-2EE04E8FED3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{140F353A-A85C-4946-AFC0-2EE04E8FED3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{140F353A-A85C-4946-AFC0-2EE04E8FED3B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

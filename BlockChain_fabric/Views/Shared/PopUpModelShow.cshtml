@@ -1,0 +1,102 @@
+﻿
+@{
+    Layout = null;
+}
+
+<script src="~/JsonSchemaForm/lib/jsonform.js"></script>
+<script src="~/JsonSchemaForm/deps/underscore.js"></script>
+<script src="~/JsonSchemaForm/deps/opt/jsv.js"></script>
+<style>
+    .selectfield {
+        width: 100%;
+    }
+
+    .tab {
+        background-color: darkgray;
+        border-radius: 8px;
+        cursor: pointer;
+        color: white;
+        text-align: center;
+        padding: 8px;
+        margin-right: 5px;
+        margin-bottom: 3px;
+    }
+</style>
+
+<form style="padding:15px;" enctype="multipart/form-data" id="task-@ViewBag.modalTitle">
+    @Html.AntiForgeryToken()
+</form>
+
+
+
+<script>
+    //$('.select2').select2()
+    var sc = '@ViewBag.schema';
+    debugger;
+    var JSONdata = JSON.parse(sc.replace(/&quot;/g, '"'));
+    console.log(JSON.stringify(JSONdata));
+    var title = '@ViewBag.modalTitle';
+    var val = {};
+    var valdata = '@ViewBag.val';
+    if (valdata !== "") {
+        val = JSON.parse(valdata.replace(/&quot;/g, '"'));
+    }
+
+    $("#task-@ViewBag.modalTitle").jsonForm({
+        schema: JSONdata.schema,
+        form: JSONdata.form,
+        value: val,
+        onSubmit: function (errors, values) {
+            debugger;
+            if (errors) {
+                console.log(JSON.stringify(errors));
+            } else {
+                try {
+                    if (document.body.contains(document.querySelector(".selectMultiple"))) {
+                        values['customers'] = JSON.stringify($(".selectMultiple").val());
+
+                    }
+                   // values['__RequestVerificationToken'] = $("[name='__RequestVerificationToken']").val();
+                    if (document.body.contains(document.querySelector('input[type="file"]'))) {
+                        var fp = $('input[type="file"]');
+                    var reader = new FileReader();
+                    var b64 = '';
+
+                    reader.onloadend = function () {
+                        // Since it contains the Data URI, we should remove the prefix and keep only Base64 string
+                        b64 = reader.result.replace(/^data:.+;base64,/, '');
+
+                            values['photo'] = b64;
+
+                            DoAction(title, values);
+                        }
+
+                        if (fp[0].files[0]) {
+                            reader.readAsDataURL(fp[0].files[0]);
+                        }
+                        else {
+                            console.log(values);
+                            DoAction(title, values);
+                        }
+
+                    }
+
+                    else {
+                        console.log(values);
+                        DoAction(title, values);
+                    }
+                }
+                catch (e) {
+                    console.log(e);
+                }
+            }
+        }
+    });
+    $(function () {
+        //Initialize Select2 Elements
+        $('.select2').select2()
+
+    })
+    $(".selectMultiple").attr("multiple", "true");
+</script>
+

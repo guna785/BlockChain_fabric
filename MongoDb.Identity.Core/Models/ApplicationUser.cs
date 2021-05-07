@@ -15,6 +15,9 @@ namespace MongoDb.Identity.Core.Models
         public string Name { get; set; }
         public bool IsAdmin { get; set; }
 
+        public string device { get; set; }
+        public string gender { get; set; }
+        public int age { get; set; }
         public virtual List<string> Roles { get; set; }
 
         public ApplicationUser()

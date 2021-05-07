@@ -14,8 +14,8 @@ namespace DAL.DBSettings
             var path = Path.Combine(Directory.GetCurrentDirectory(), "appsettings.json");
             configBuilder.AddJsonFile(path, false);
             var root = configBuilder.Build();
-            var conStrConfig = root.GetSection("DatabaseSettings:ConnectionString");
-            var conDB = root.GetSection("DatabaseSettings:DatabaseName");
+            var conStrConfig = root.GetSection("DataBaseSetting:ConnectionString");
+            var conDB = root.GetSection("DataBaseSetting:DB");
             connectionString = conStrConfig.Value;
             DB = conDB.Value;
         }

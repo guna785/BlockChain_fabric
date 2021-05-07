@@ -1,0 +1,61 @@
+﻿
+@{
+    ViewData["Title"] = "Login";
+}
+@model BlockChain_fabric.Models.LoginVIewModel
+<div>
+    
+
+    <div class="login_wrapper">
+        <div class="animate form login_form">
+            <section class="login_content">
+                <form asp-action="Index" asp-controller="Login" method="post">
+                    <img class="img-circle" src="~/img/logo.jpg" width="100px" height="100px" />
+                    <h1>Login Form</h1>
+                    <div>
+                        <input type="text" class="form-control" asp-for="uname" id="uname"  required name="uname" placeholder="User Name"  />
+                    </div>
+                    <div>
+                        <input  type="password" asp-for="password" id="password" required class="form-control" placeholder="Password" />
+                    </div>
+                    <div>
+                        <input asp-for="RememberMe" type="checkbox" id="remember">
+                        <label for="remember">
+                            Remember Me
+                        </label>
+                    </div>
+                    <div>
+                        <button class="btn btn-primary submit" type="submit">Log in</button>
+                        <a class="reset_pass" href="#">Lost your password?</a>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <div class="separator">
+                        <p class="change_link">
+                            New to site?
+                            <a asp-action="Register" asp-controller="Login" class="to_register"> Create Account </a>
+                        </p>
+
+                        <div class="clearfix"></div>
+                        <br />
+                        <p>
+                            @if (ViewBag.err != "")
+                            {
+                                <div class="form-group">
+                                    <label class="btn btn-danger" style="padding:10px;">@ViewBag.err</label>
+                                </div>
+                            }
+                        </p>
+                        <div>
+                            <h1><i class="fa fa-paw"></i> Block Chain!</h1>
+                            <p>©2016 All Rights Reserved. Block Chain</p>
+                        </div>
+                    </div>
+                </form>
+            </section>
+        </div>
+
+        
+    </div>
+</div>

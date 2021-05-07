@@ -13,39 +13,17 @@ namespace BL.SchemaEditBuilder
     public class EditBuilder
     {
 
-        private IGenericBL<admin> _admins;
-        private IGenericBL<user> _users;
+       
         private IGenericBL<email> _emails;
 
-        public EditBuilder(IGenericBL<admin> admins, IGenericBL<user> users, IGenericBL<email> emails)
+        public EditBuilder( IGenericBL<email> emails)
         {
-
-            _admins = admins;
-            _users = users;
             _emails = emails;
         }
         public async Task<T> ReturnObjectData<T>(string id)
         {
             var obj = typeof(T).Name;
-            if (obj.Equals("EditAdminSchema"))
-            {
-                var obdata = _admins.FindById(id);
-                return (T)Convert.ChangeType(new EditAdminSchema()
-                {
-                    name = obdata.name,
-                    Id = obdata.Id.ToString(),
-                    uname = obdata.uname,
-                    address = obdata.address,
-                    email = obdata.email,
-                    password = "",
-                    phone = obdata.phone,
-                    status = obdata.status,
-                    remarks = obdata.remarks
-
-                }, typeof(T));
-            }
-
-
+           
 
             if (obj.Equals("EmailSchema"))
             {
