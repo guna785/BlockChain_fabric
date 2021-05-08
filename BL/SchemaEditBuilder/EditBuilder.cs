@@ -15,10 +15,12 @@ namespace BL.SchemaEditBuilder
 
        
         private IGenericBL<email> _emails;
+        private IGenericBL<Devices> _device;
 
-        public EditBuilder( IGenericBL<email> emails)
+        public EditBuilder( IGenericBL<email> emails, IGenericBL<Devices> device)
         {
             _emails = emails;
+            _device = device;
         }
         public async Task<T> ReturnObjectData<T>(string id)
         {
@@ -26,6 +28,20 @@ namespace BL.SchemaEditBuilder
            
 
             if (obj.Equals("EmailSchema"))
+            {
+                var obdata = _emails.AsQueryable().FirstOrDefault() == null ? new email() : _emails.AsQueryable().FirstOrDefault();
+                return (T)Convert.ChangeType(new EmailSchema()
+                {
+                    emailaddress = obdata.emailaddress,
+                    name = obdata.name,
+                    password = "",
+                    smtpport = obdata.smtpport,
+                    smtpserver = obdata.smtpserver,
+                    Id = obdata.Id.ToString()
+
+                }, typeof(T));
+            }
+            else if (obj.Equals("EmailSchema"))
             {
                 var obdata = _emails.AsQueryable().FirstOrDefault() == null ? new email() : _emails.AsQueryable().FirstOrDefault();
                 return (T)Convert.ChangeType(new EmailSchema()

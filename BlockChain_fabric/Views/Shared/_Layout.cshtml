@@ -137,7 +137,7 @@
 @{ var claims = Context.User.Claims;
     var uname = claims?.FirstOrDefault(x => x.Type == ClaimTypes.Surname)?.Value;
 
-    //var photo = claims?.FirstOrDefault(x => x.Type == "photo")?.Value; 
+    //var photo = claims?.FirstOrDefault(x => x.Type == "photo")?.Value;
 }
 <body class="nav-md">
     <div class="container body">
@@ -177,26 +177,19 @@
                                 </li>
                                 @if (Context.User.IsInRole("Admin"))
                                 {
-                    <li>
-                        <a><i class="fa fa-edit"></i> Users <span class="fa fa-chevron-down"></span></a>
-                        <ul class="nav child_menu">
-                            <li><a asp-action="UserList" asp-controller="Home">User List</a></li>
-                        </ul>
-                    </li>
-}
+                                    <li>
+                                        <a><i class="fa fa-edit"></i> Users <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><a asp-action="UserList" asp-controller="Home">User List</a></li>
+                                            <li><a asp-action="Devices" asp-controller="Home">Devices List</a></li>
+                                        </ul>
+                                    </li>
+                                }
 
                                 <li>
-                                    <a><i class="fa fa-desktop"></i> Eye Bank <span class="fa fa-chevron-down"></span></a>
+                                    <a><i class="fa fa-bar-chart-o"></i> Medical Records <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-                                        <li><a asp-action="EyeBankStock" asp-controller="Home">Eye Stock</a></li>
-                                        <li><a asp-action="EyeDonation" asp-controller="Home">Eye Donation</a></li>
-                                        <li><a asp-action="EyeRequest" asp-controller="Home">Eye Request</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a><i class="fa fa-table"></i> Reporting <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                        <li><a asp-action="Reporting" asp-controller="Home">Reporting</a></li>
+                                        <li><a asp-action="Records" asp-controller="Home">Records</a></li>
                                     </ul>
                                 </li>
                                 <li>
@@ -227,12 +220,12 @@
                                     <img src="~/production/images/user.png" alt="">@uname
                                 </a>
                                 <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-                                   
+
                                     <a class="dropdown-item" asp-action="signout" asp-controller="Login"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                                 </div>
                             </li>
 
-                          
+
                         </ul>
                     </nav>
                 </div>

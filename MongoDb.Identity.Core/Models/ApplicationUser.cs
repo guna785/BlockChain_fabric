@@ -20,6 +20,7 @@ namespace MongoDb.Identity.Core.Models
         public int age { get; set; }
         public virtual List<string> Roles { get; set; }
 
+        public DateTime createdAt { get; set; }
         public ApplicationUser()
         {
             Roles = new List<string>();
