@@ -1,5 +1,7 @@
 ﻿using DAL.DALrepo;
 using DAL.Models;
+using Microsoft.AspNetCore.Identity;
+using MongoDb.Identity.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -19,12 +21,12 @@ namespace GSchema
             {
                 return Newtonsoft.Json.JsonConvert.SerializeObject(new List<string>() { "Active", "InActive" });
             }
-            //if (val.Equals("area"))
+            //if (val.Equals("user"))
             //{
-            //    GenericRepository<area> rep = new GenericRepository<area>();
+            //    UserManager<ApplicationUser> rep = new UserManager<ApplicationUser>();
             //    var ls = new List<string>();
             //    ls.Add("Not Linked");
-            //    var iot = zone == "root" ? rep.AsQueryable().Where(x => x.status != "Deleted").GroupBy(x => new { x.name }).Select(x => x.Key.name).ToList() : rep.AsQueryable().Where(x => x.status != "Deleted" && x.zone == zone).Select(x => x.name).ToList();
+            //    var iot = rep.Users.GroupBy(x => new { x.UserName }).Select(x => x.Key.UserName).ToList() ;
             //    ls.AddRange(iot);
             //    return Newtonsoft.Json.JsonConvert.SerializeObject(ls);
             //}

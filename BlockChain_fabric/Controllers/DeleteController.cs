@@ -22,9 +22,15 @@ namespace BlockChain_fabric.Controllers
             _log = log;
             _device = device;
         }
-        public IActionResult Index()
+        [HttpPost]
+        public async Task<IActionResult> DeleteDevice([FromBody] string Id)
         {
-            return View();
+            if (!ModelState.IsValid)
+            {
+                return BadRequest("Invalid Request");
+            }
+            await _device.DeleteByIdAsync(Id);
+            return Ok("Your Record has been deleted");
         }
     }
 }

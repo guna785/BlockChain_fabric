@@ -1,4 +1,5 @@
-﻿using BL.SchemaModel;
+﻿using BL.SchemaEditBuilder;
+using BL.SchemaModel;
 using BlockChain_fabric.Models;
 using GSchema;
 using Microsoft.AspNetCore.Mvc;
@@ -14,10 +15,11 @@ namespace BlockChain_fabric.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly EditBuilder _builder;
+        public HomeController(ILogger<HomeController> logger, EditBuilder builder)
         {
             _logger = logger;
+            _builder = builder;
         }
 
         public IActionResult Index()
@@ -48,6 +50,10 @@ namespace BlockChain_fabric.Controllers
             }
             else if (ID.Contains("EditDevice"))
             {
+                var objId = ID.Split('-')[1];
+                var data = await _builder.ReturnObjectData<EditDeviceSchema>(objId);
+
+                ViewBag.val = Newtonsoft.Json.JsonConvert.SerializeObject(data);
                 schema = await GSgenerator.GenerateSchema<EditDeviceSchema>("");
                 ViewBag.modalTitle = "EditDevice";
             }

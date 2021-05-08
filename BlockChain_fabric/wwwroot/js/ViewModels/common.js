@@ -1,5 +1,5 @@
-﻿var addDonationUrl = "/InsertData/AddDonation";
-var addRequestUrl = "/InsertData/AddRequest";
+﻿var InsertDeviceUrl = "/InsertData/InsertDevice";
+var EditDeviceUrl = "/EditData/EditDevice";
 
 function JsonPOST(url, data) {
     $.ajax({
@@ -23,12 +23,12 @@ function JsonPOST(url, data) {
 
 function DoAction(action, data) {
 
-    if (action === "AddDonation") {
-        JsonPOST(addDonationUrl, data);
+    if (action === "AddDevice") {
+        JsonPOST(InsertDeviceUrl, data);
         LoadData();
     }
-    else if (action === "AddRequest") {
-        JsonPOST(addRequestUrl, data);
+    else if (action === "EditDevice") {
+        JsonPOST(EditDeviceUrl, data);
         LoadData();
     }
    

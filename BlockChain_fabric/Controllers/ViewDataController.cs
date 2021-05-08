@@ -139,6 +139,52 @@ namespace BlockChain_fabric.Controllers
                     }).ToList()
             });
         }
+        [HttpPost]
+        public async Task<IActionResult> LoadDevices([FromBody] DtParameters parameters)
+        {
+            var searchBy = parameters.Search?.Value;
+            var orderCriteria = string.Empty;
+            var orderAscendingDirection = true;
 
+            if (parameters.Order != null)
+            {
+                // in this example we just default sort on the 1st column
+                orderCriteria = "CreatedAt";
+                orderAscendingDirection = parameters.Order[0].Dir.ToString().ToLower() != "asc";
+            }
+            else
+            {
+                // if we have an empty search then just order the results by Id ascending
+                orderCriteria = "CreatedAt";
+                orderAscendingDirection = false;
+            }
+
+            var result =  _device.AsQueryable() ;
+
+            if (!string.IsNullOrEmpty(searchBy))
+            {
+                result = result.Where(r => r.name != null && r.name.ToUpper().Contains(searchBy.ToUpper()) ||
+                                          r.userId != null && r.userId.ToUpper().Contains(searchBy.ToUpper())
+                                         );
+            }
+
+            result = orderAscendingDirection ? result.AsQueryable().OrderByDynamic(orderCriteria, DtOrderDir.Asc) : result.AsQueryable().OrderByDynamic(orderCriteria, DtOrderDir.Desc);
+
+            // now just get the count of items (without the skip and take) - eg how many could be returned with filtering
+            var filteredResultsCount = result.Count();
+            var cntdb = _device.AsQueryable();
+
+            var totalResultsCount = cntdb.Count();
+
+            return Json(new
+            {
+                draw = parameters.Draw,
+                recordsTotal = totalResultsCount,
+                recordsFiltered = filteredResultsCount,
+                data = result
+                    .Skip(parameters.Start)
+                    .Take(parameters.Length).ToList()
+            });
+        }
     }
 }
