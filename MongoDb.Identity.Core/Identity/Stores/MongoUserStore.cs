@@ -28,7 +28,7 @@ namespace MongoDb.Identity.Core.Identity.Stores
     {
         private readonly IMongoCollection<TUser> _users;
         private readonly ILookupNormalizer _normalizer;
-        public IQueryable<TUser> Users => throw new NotImplementedException();
+        public IQueryable<TUser> Users => _users.AsQueryable();
 
         public MongoUserStore(MongoTablesFactory proxyTables, ILookupNormalizer normalizer)
         {
