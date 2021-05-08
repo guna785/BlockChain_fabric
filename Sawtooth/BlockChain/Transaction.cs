@@ -8,7 +8,6 @@ namespace Sawtooth.BlockChain
     {
         public string userId { get; set; }
         public string BP { get; set; }
-        public string gulcoseLevel { get; set; }
         public DateTime createdAt { get; set; }
         public BlockTransaction()
         {
@@ -18,7 +17,6 @@ namespace Sawtooth.BlockChain
         {
             userId = _userId;
             BP = _BP;
-            gulcoseLevel = _gulcoseLevel;
             createdAt = _createdAt;
         }
 
