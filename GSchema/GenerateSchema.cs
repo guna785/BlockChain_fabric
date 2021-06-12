@@ -9,7 +9,12 @@ namespace GSchema
 {
     public class GSgenerator
     {
-        public async static Task<string> GenerateSchema<T>(string zone = "", string maxVal = "")
+        private readonly getEnumList _enumList;
+        public GSgenerator(getEnumList enumList)
+        {
+            _enumList = enumList;
+        }
+        public async  Task<string> GenerateSchema<T>(string zone = "", string maxVal = "")
         {
             var obj = typeof(T).Name;
             StringBuilder schema = new StringBuilder();
@@ -102,7 +107,7 @@ namespace GSchema
                         }
                         if (!string.IsNullOrEmpty(EnumVal) && propType != "Array")
                         {
-                            schema.Append(",\"enum\":" + await getEnumList.getEnumRecords(EnumVal, zone));
+                            schema.Append(",\"enum\":" + await _enumList.getEnumRecords(EnumVal, zone));
                         }
                         if (!string.IsNullOrEmpty(regularExpression) && propType != "Array")
                         {
@@ -110,7 +115,7 @@ namespace GSchema
                         }
                         if (message && propType != "Array")
                         {
-                            schema.Append(",\"messages\":" + await getEnumList.getVlidationMessage(nameval));
+                            schema.Append(",\"messages\":" + await _enumList.getVlidationMessage(nameval));
                         }
                         if (!string.IsNullOrEmpty(minimum) && propType != "Array")
                         {
@@ -169,7 +174,7 @@ namespace GSchema
             string schemaFile = "{\"schema\":" + schema + ",\"form\":" + form + "}";
             return schemaFile;
         }
-        public async static Task<schemaFile> generateInnerSchema(PropertyInfo prop, string zone = "")
+        public async  Task<schemaFile> generateInnerSchema(PropertyInfo prop, string zone = "")
         {
             var nam = prop.Name;
             StringBuilder schema = new StringBuilder();
@@ -233,7 +238,7 @@ namespace GSchema
                         }
                         if (!string.IsNullOrEmpty(EnumVal) && propType != "Array")
                         {
-                            schema.Append(",\"enum\":" + await getEnumList.getEnumRecords(EnumVal, zone));
+                            schema.Append(",\"enum\":" + await _enumList.getEnumRecords(EnumVal, zone));
                         }
                         if (!string.IsNullOrEmpty(regularExpression) && propType != "Array")
                         {
@@ -241,7 +246,7 @@ namespace GSchema
                         }
                         if (message && propType != "Array")
                         {
-                            schema.Append(",\"messages\":" + await getEnumList.getVlidationMessage(nameval));
+                            schema.Append(",\"messages\":" + await _enumList.getVlidationMessage(nameval));
                         }
                         if (!string.IsNullOrEmpty(minimum) && propType != "Array")
                         {

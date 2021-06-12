@@ -2,6 +2,7 @@
 using BL.Repository;
 using BL.SchemaEditBuilder;
 using BL.service;
+using GSchema;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,8 @@ namespace BL
             services.AddScoped<BlHelper>();
             //services.AddScoped(typeof(IAuthenTicationService), typeof(AuthenTicationService));
             services.AddScoped<EditBuilder>();
+            services.AddScoped<GSgenerator>();
+            services.AddScoped<getEnumList>();
             return services;
         }
     }

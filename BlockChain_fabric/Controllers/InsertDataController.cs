@@ -1,5 +1,7 @@
-﻿using BL.SchemaModel;
+﻿using BL.SawtoothClient;
+using BL.SchemaModel;
 using BL.service;
+using BlockChain_fabric.Models;
 using DAL.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -7,6 +9,7 @@ using MongoDb.Identity.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace BlockChain_fabric.Controllers
@@ -53,6 +56,15 @@ namespace BlockChain_fabric.Controllers
             }
             return BadRequest("Invalid Request");
 
+        }
+        [HttpPost]
+        public async Task<IActionResult> PostData([FromBody] RecordData data)
+        {
+
+            ClientAccess access = new ClientAccess();
+            var res = access.postMedicalRecord(HttpContext.User.Identity.Name, "set", Convert.ToBase64String(Encoding.UTF8.GetBytes(Newtonsoft.Json.JsonConvert.SerializeObject(data))));
+
+            return BadRequest("Invalid Request");
         }
     }
 }

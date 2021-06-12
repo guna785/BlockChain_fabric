@@ -11,6 +11,10 @@
   <ItemGroup>
     <Folder Include="Models\" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="PeterO.Cbor" Version="4.4.2" />
+    <PackageReference Include="Sawtooth.Sdk" Version="1.0.14" />
+  </ItemGroup>
   
 
 </Project>

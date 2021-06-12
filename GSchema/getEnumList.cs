@@ -11,9 +11,14 @@ using System.Threading.Tasks;
 
 namespace GSchema
 {
-    public static class getEnumList
+    public  class getEnumList
     {
-        public async static Task<string> getEnumRecords(string val, string zone = "")
+        private readonly UserManager<ApplicationUser> _user ;
+        public getEnumList(UserManager<ApplicationUser> user)
+        {
+            _user = user;
+        }
+        public async  Task<string> getEnumRecords(string val, string zone = "")
         {
 
 
@@ -21,15 +26,14 @@ namespace GSchema
             {
                 return Newtonsoft.Json.JsonConvert.SerializeObject(new List<string>() { "Active", "InActive" });
             }
-            //if (val.Equals("user"))
-            //{
-            //    UserManager<ApplicationUser> rep = new UserManager<ApplicationUser>();
-            //    var ls = new List<string>();
-            //    ls.Add("Not Linked");
-            //    var iot = rep.Users.GroupBy(x => new { x.UserName }).Select(x => x.Key.UserName).ToList() ;
-            //    ls.AddRange(iot);
-            //    return Newtonsoft.Json.JsonConvert.SerializeObject(ls);
-            //}
+            if (val.Equals("user"))
+            {
+                var ls = new List<string>();
+                ls.Add("Not Linked");
+                var iot = _user.Users.GroupBy(x => new { x.UserName }).Select(x => x.Key.UserName).ToList();
+                ls.AddRange(iot);
+                return Newtonsoft.Json.JsonConvert.SerializeObject(ls);
+            }
 
             if (val.Contains("month"))
             {
@@ -51,7 +55,7 @@ namespace GSchema
             return "";
         }
 
-        public async static Task<string> getVlidationMessage(string val)
+        public async  Task<string> getVlidationMessage(string val)
         {
             var msg = new
             {

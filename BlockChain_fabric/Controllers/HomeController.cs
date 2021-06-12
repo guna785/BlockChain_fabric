@@ -16,10 +16,12 @@ namespace BlockChain_fabric.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly EditBuilder _builder;
-        public HomeController(ILogger<HomeController> logger, EditBuilder builder)
+        private readonly GSgenerator _gSgenerator;
+        public HomeController(ILogger<HomeController> logger, EditBuilder builder, GSgenerator gSgenerator)
         {
             _logger = logger;
             _builder = builder;
+            _gSgenerator = gSgenerator;
         }
 
         public IActionResult Index()
@@ -35,6 +37,7 @@ namespace BlockChain_fabric.Controllers
         {
             return View();
         }
+        
         public IActionResult Logs()
         {
             return View();
@@ -45,7 +48,7 @@ namespace BlockChain_fabric.Controllers
 
             if (ID.Contains("AddDevice"))
             {
-                schema = await GSgenerator.GenerateSchema<DeviceSchema>("");
+                schema = await _gSgenerator.GenerateSchema<DeviceSchema>("");
                 ViewBag.modalTitle = "AddDevice";
             }
             else if (ID.Contains("EditDevice"))
@@ -54,7 +57,7 @@ namespace BlockChain_fabric.Controllers
                 var data = await _builder.ReturnObjectData<EditDeviceSchema>(objId);
 
                 ViewBag.val = Newtonsoft.Json.JsonConvert.SerializeObject(data);
-                schema = await GSgenerator.GenerateSchema<EditDeviceSchema>("");
+                schema = await _gSgenerator.GenerateSchema<EditDeviceSchema>("");
                 ViewBag.modalTitle = "EditDevice";
             }
 
