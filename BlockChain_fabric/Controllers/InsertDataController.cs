@@ -60,9 +60,14 @@ namespace BlockChain_fabric.Controllers
         [HttpPost]
         public async Task<IActionResult> PostData([FromBody] RecordData data)
         {
+            var div = _device.AsQueryable().Where(x => x.mac == data.mac).FirstOrDefault();
 
             ClientAccess access = new ClientAccess();
-            var res = access.postMedicalRecord(HttpContext.User.Identity.Name, "set", Convert.ToBase64String(Encoding.UTF8.GetBytes(Newtonsoft.Json.JsonConvert.SerializeObject(data))));
+            var res = access.postMedicalRecord(div.userId, "set", Convert.ToBase64String(Encoding.UTF8.GetBytes(Newtonsoft.Json.JsonConvert.SerializeObject(data))));
+            if (res != null)
+            {
+                return Ok("Success");
+            }
 
             return BadRequest("Invalid Request");
         }
