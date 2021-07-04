@@ -1,4 +1,5 @@
-﻿using BL.SawtoothClient;
+﻿using BL.Models;
+using BL.SawtoothClient;
 using BL.SchemaModel;
 using BL.service;
 using BlockChain_fabric.Models;
@@ -64,7 +65,7 @@ namespace BlockChain_fabric.Controllers
             var div = _device.AsQueryable().Where(x => x.mac == data.mac).FirstOrDefault();
 
             ClientAccess access = new ClientAccess();
-            var res = access.postMedicalRecord("guna@b2lsolutions.in", "set", Convert.ToBase64String(Encoding.UTF8.GetBytes(Newtonsoft.Json.JsonConvert.SerializeObject(data))));
+            var res = access.postMedicalRecord(div.userId, "set", Convert.ToBase64String(Encoding.UTF8.GetBytes(Newtonsoft.Json.JsonConvert.SerializeObject(data))));
             if (res != null)
             {
                 return Ok("Success");

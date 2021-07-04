@@ -1,4 +1,5 @@
-﻿using BL.SawtoothClient;
+﻿using BL.Models;
+using BL.SawtoothClient;
 using BL.SchemaEditBuilder;
 using BL.SchemaModel;
 using BlockChain_fabric.Models;
@@ -20,11 +21,13 @@ namespace BlockChain_fabric.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly EditBuilder _builder;
         private readonly GSgenerator _gSgenerator;
-        public HomeController(ILogger<HomeController> logger, EditBuilder builder, GSgenerator gSgenerator)
+        private readonly ClientKeyManager _clientKey;
+        public HomeController(ILogger<HomeController> logger, EditBuilder builder, GSgenerator gSgenerator, ClientKeyManager clientKey)
         {
             _logger = logger;
             _builder = builder;
             _gSgenerator = gSgenerator;
+            _clientKey = clientKey;
         }
 
         public IActionResult Index()
@@ -53,9 +56,8 @@ namespace BlockChain_fabric.Controllers
             else
             {
                 ClientAccess client = new ClientAccess();
-                var res = client.GetMedicalRecord(record.data);
-                ViewBag.mRecord = dlist;
-
+                var res = client.GetMedicalRecord(record.data);                
+                ViewBag.mRecord = await _clientKey.SwatoothRetriveData(res,record.data);
             }
             return View();
         }

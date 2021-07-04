@@ -53,36 +53,8 @@ namespace BL.SawtoothClient
 
             var data =await response.Content.ReadAsStringAsync();
             dynamic json = JValue.Parse(data);
-            try
-            {
-                var batchData = json.data;
-                foreach(var d in batchData)
-                {
-                    var transactions = d.transactions;
-                    foreach(var t in transactions)
-                    {
-                        var payload = t.payload;
-
-                        var decodeData = Convert.FromBase64String(payload.Value); 
-                        try
-                        {
-                            var m = CBORObject.DecodeFromBytes(decodeData, CBOREncodeOptions.DefaultCtap2Canonical);
-                        }
-                        catch
-                        {
-
-                        }
-                        
-                    }
-                }
-            }
-            catch(Exception ex)
-            {
-
-            }
             
-
-            return response;
+            return json;
         }
     }
 }

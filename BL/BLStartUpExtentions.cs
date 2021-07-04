@@ -1,5 +1,6 @@
 ﻿using BL.Helper;
 using BL.Repository;
+using BL.SawtoothClient;
 using BL.SchemaEditBuilder;
 using BL.service;
 using GSchema;
@@ -20,6 +21,7 @@ namespace BL
             services.AddScoped<EditBuilder>();
             services.AddScoped<GSgenerator>();
             services.AddScoped<getEnumList>();
+            services.AddScoped<ClientKeyManager>();
             return services;
         }
     }
