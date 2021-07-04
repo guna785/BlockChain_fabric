@@ -6,6 +6,7 @@ using DAL.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MongoDb.Identity.Core.Models;
+using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,7 +39,7 @@ namespace BlockChain_fabric.Controllers
                 CreatedAt = DateTime.Now,
                 mac = schema.mac,
                 name = schema.name,
-                userId = schema.userId
+                userId =schema.userId
             });
             if (res)
             {
@@ -63,7 +64,7 @@ namespace BlockChain_fabric.Controllers
             var div = _device.AsQueryable().Where(x => x.mac == data.mac).FirstOrDefault();
 
             ClientAccess access = new ClientAccess();
-            var res = access.postMedicalRecord(div.userId, "set", Convert.ToBase64String(Encoding.UTF8.GetBytes(Newtonsoft.Json.JsonConvert.SerializeObject(data))));
+            var res = access.postMedicalRecord("guna@b2lsolutions.in", "set", Convert.ToBase64String(Encoding.UTF8.GetBytes(Newtonsoft.Json.JsonConvert.SerializeObject(data))));
             if (res != null)
             {
                 return Ok("Success");

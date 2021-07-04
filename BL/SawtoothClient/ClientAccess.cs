@@ -1,4 +1,5 @@
-﻿using PeterO.Cbor;
+﻿using Newtonsoft.Json.Linq;
+using PeterO.Cbor;
 using Sawtooth.Sdk;
 using Sawtooth.Sdk.Client;
 using System;
@@ -32,7 +33,8 @@ namespace BL.SawtoothClient
             settings.Outputs.Add(prefix);
             var encoder = new Sawtooth.Sdk.Client.Encoder(settings, signer.GetPrivateKey());
 
-            var payload = encoder.EncodeSingleTransaction(obj.EncodeToBytes());
+             var payload = encoder.EncodeSingleTransaction(obj.EncodeToBytes());
+            //var payload = obj.EncodeToBytes();
 
             var content = new ByteArrayContent(payload);
             content.Headers.Add("Content-Type", "application/octet-stream");
@@ -40,6 +42,45 @@ namespace BL.SawtoothClient
             var httpClient = new HttpClient();
 
             var response = httpClient.PostAsync("http://localhost:8008/batches", content).Result;
+
+            return response;
+        }
+        public async Task<dynamic> GetMedicalRecord(string uname)
+        {
+            var httpClient = new HttpClient();
+
+            var response = httpClient.GetAsync("http://localhost:8008/batches").Result;
+
+            var data =await response.Content.ReadAsStringAsync();
+            dynamic json = JValue.Parse(data);
+            try
+            {
+                var batchData = json.data;
+                foreach(var d in batchData)
+                {
+                    var transactions = d.transactions;
+                    foreach(var t in transactions)
+                    {
+                        var payload = t.payload;
+
+                        var decodeData = Convert.FromBase64String(payload.Value); 
+                        try
+                        {
+                            var m = CBORObject.DecodeFromBytes(decodeData, CBOREncodeOptions.DefaultCtap2Canonical);
+                        }
+                        catch
+                        {
+
+                        }
+                        
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+
+            }
+            
 
             return response;
         }

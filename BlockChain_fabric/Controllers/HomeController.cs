@@ -1,7 +1,9 @@
-﻿using BL.SchemaEditBuilder;
+﻿using BL.SawtoothClient;
+using BL.SchemaEditBuilder;
 using BL.SchemaModel;
 using BlockChain_fabric.Models;
 using GSchema;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -12,6 +14,7 @@ using System.Threading.Tasks;
 
 namespace BlockChain_fabric.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -31,6 +34,29 @@ namespace BlockChain_fabric.Controllers
 
         public IActionResult UserList()
         {
+            return View();
+        }
+        public IActionResult Records()
+        {
+            var dlist = new List<MRecord>();
+            ViewBag.mRecord = dlist;
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Records(RecordSearch record)
+        {
+            var dlist = new List<MRecord>();
+            if (!ModelState.IsValid)
+            {
+                ViewBag.mRecord = dlist;
+            }
+            else
+            {
+                ClientAccess client = new ClientAccess();
+                var res = client.GetMedicalRecord(record.data);
+                ViewBag.mRecord = dlist;
+
+            }
             return View();
         }
         public IActionResult Devices()
@@ -64,8 +90,7 @@ namespace BlockChain_fabric.Controllers
             ViewBag.schema = schema;
 
             return View();
-        }
-
+        }        
         public IActionResult Privacy()
         {
             return View();
