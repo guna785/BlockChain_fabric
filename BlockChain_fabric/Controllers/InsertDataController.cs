@@ -21,12 +21,13 @@ namespace BlockChain_fabric.Controllers
         private readonly UserManager<ApplicationUser> _user;
         private readonly IGenericBL<Logs> _log;
         private readonly IGenericBL<Devices> _device;
-
-        public InsertDataController(UserManager<ApplicationUser> user, IGenericBL<Devices> device, IGenericBL<Logs> log)
+        private readonly ClientKeyManager _clientKey;
+        public InsertDataController(UserManager<ApplicationUser> user, IGenericBL<Devices> device, IGenericBL<Logs> log, ClientKeyManager clientKey)
         {
             _user = user;
             _log = log;
             _device = device;
+            _clientKey = clientKey;
         }
         [HttpPost]
         public async Task<IActionResult> InsertDevice([FromBody] DeviceSchema schema)
@@ -68,6 +69,7 @@ namespace BlockChain_fabric.Controllers
             var res = access.postMedicalRecord(div.userId, "set", Convert.ToBase64String(Encoding.UTF8.GetBytes(Newtonsoft.Json.JsonConvert.SerializeObject(data))));
             if (res != null)
             {
+                 var r= await  _clientKey.SwatoothKeyStore(res.encoderSettings, res.obj);
                 return Ok("Success");
             }
 

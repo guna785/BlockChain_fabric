@@ -5,8 +5,11 @@ using BL.SchemaModel;
 using BlockChain_fabric.Models;
 using GSchema;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using MongoDb.Identity.Core.Models;
+using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -18,16 +21,19 @@ namespace BlockChain_fabric.Controllers
     [Authorize]
     public class HomeController : Controller
     {
+        private readonly UserManager<ApplicationUser> _user;
         private readonly ILogger<HomeController> _logger;
         private readonly EditBuilder _builder;
         private readonly GSgenerator _gSgenerator;
         private readonly ClientKeyManager _clientKey;
-        public HomeController(ILogger<HomeController> logger, EditBuilder builder, GSgenerator gSgenerator, ClientKeyManager clientKey)
+        public HomeController(ILogger<HomeController> logger, EditBuilder builder, GSgenerator gSgenerator, ClientKeyManager clientKey,
+            UserManager<ApplicationUser> user)
         {
             _logger = logger;
             _builder = builder;
             _gSgenerator = gSgenerator;
             _clientKey = clientKey;
+            _user = user;
         }
 
         public IActionResult Index()
@@ -43,11 +49,14 @@ namespace BlockChain_fabric.Controllers
         {
             var dlist = new List<MRecord>();
             ViewBag.mRecord = dlist;
+            ViewBag.user = HttpContext.User.IsInRole("Admin") ? "" : _user.Users.Where(x => x.Id == ObjectId.Parse(HttpContext.User.Identity.Name)).FirstOrDefault().UserName;
             return View();
         }
         [HttpPost]
         public async Task<IActionResult> Records(RecordSearch record)
         {
+            ViewBag.user = HttpContext.User.IsInRole("Admin") ? "" : _user.Users.Where(x => x.Id == ObjectId.Parse(HttpContext.User.Identity.Name)).FirstOrDefault().UserName;
+
             var dlist = new List<MRecord>();
             if (!ModelState.IsValid)
             {

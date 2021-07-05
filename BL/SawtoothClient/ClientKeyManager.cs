@@ -26,7 +26,7 @@ namespace BL.SawtoothClient
                 {
                     certficate = Convert.ToBase64String(obj.EncodeToBytes()),
                     keysettings = Newtonsoft.Json.JsonConvert.SerializeObject(settings),
-                    uname = obj["Name"].ToString(),
+                    uname = obj["Name"].AsString(),
                     CreatedAt = DateTime.Now
 
                 });
@@ -44,8 +44,9 @@ namespace BL.SawtoothClient
                 if (settings.SignerPublickey.Length > 0)
                 {
                     var d = CBORObject.DecodeFromBytes(Convert.FromBase64String(k.certficate));
-                    var c = d["Value"].ToString();
-                    var obj = Newtonsoft.Json.JsonConvert.DeserializeObject<RecordData>(Encoding.UTF8.GetString(Convert.FromBase64String(c)));
+                    var c = d["Value"].AsString();
+                    var re = Encoding.UTF8.GetString(Convert.FromBase64String(c));
+                    var obj = Newtonsoft.Json.JsonConvert.DeserializeObject<RecordData>(re);
                     dlist.Add(new MRecord()
                     {
                         uname = user,

@@ -86,7 +86,10 @@ namespace BlockChain_fabric.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel _user, string returnUrl)
         {
-
+            ViewBag.gender = new List<string>()
+            {
+                "Male","Female","Cross Gender"
+            };
             var usr = await _authenticate.Register(_user);
             if (usr == null)
             {

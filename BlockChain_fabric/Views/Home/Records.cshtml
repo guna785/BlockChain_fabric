@@ -27,7 +27,14 @@
                 <div class="col-sm-12">
                     <div class="form-horizontal">
                         <form asp-action="Records" asp-controller="Home" method="post">
-                            <input type="text" class="form-control-lg" asp-for="data" id="data" name="data" placeholder=" username / email " />
+                            @if (Context.User.IsInRole("Admin"))
+                            {
+                                <input type="text" class="form-control-lg" asp-for="data" id="data" name="data" placeholder=" username / email " />
+                            }
+                            else
+                            {
+                                <input type="text" readonly value="@ViewBag.user" class="form-control-lg" asp-for="data" id="data" name="data" placeholder=" username / email " />
+                            }
                             <input type="submit" class="btn btn-primary" />
                         </form>
                     </div>

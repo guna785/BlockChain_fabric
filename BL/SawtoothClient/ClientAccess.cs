@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using BL.Models;
+using Newtonsoft.Json.Linq;
 using PeterO.Cbor;
 using Sawtooth.Sdk;
 using Sawtooth.Sdk.Client;
@@ -13,7 +14,7 @@ namespace BL.SawtoothClient
 {
     public class ClientAccess
     {
-        public dynamic postMedicalRecord(string userId,string verb, string value)
+        public resData postMedicalRecord(string userId,string verb, string value)
         {
             var obj = CBORObject.NewMap()
                                 .Add("Name", userId)
@@ -43,7 +44,7 @@ namespace BL.SawtoothClient
 
             var response = httpClient.PostAsync("http://localhost:8008/batches", content).Result;
 
-            return response;
+            return new resData(){ response=response,encoderSettings=settings,obj=obj};
         }
         public async Task<dynamic> GetMedicalRecord(string uname)
         {
