@@ -60,6 +60,12 @@ namespace BlockChain_fabric.Controllers
             return BadRequest("Invalid Request");
 
         }
+
+        /// <summary>
+        ///           /InsertData/PostData
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> PostData([FromBody] RecordData data)
         {
