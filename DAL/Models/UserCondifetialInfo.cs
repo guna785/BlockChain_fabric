@@ -13,6 +13,6 @@ namespace DAL.Models
     {
         public ObjectId userId { get; set; }
         public string deviceMac { get; set; }
-        public string batchId { get; set; }
+        public bool doorSts  { get; set; }
     }
 }

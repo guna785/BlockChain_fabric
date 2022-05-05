@@ -7,7 +7,11 @@ namespace BL.Models
 {
     public class RecordData
     {
-        public string bp { get; set; }
+        public string temp { get; set; }
+        public string humidity { get; set; }
+        public bool doorSts { get; set; }
+        public string lat { get; set; }
+        public string lang { get; set; }
         public string mac { get; set; }
     }
 }

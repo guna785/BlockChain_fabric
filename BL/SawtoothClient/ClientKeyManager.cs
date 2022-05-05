@@ -50,7 +50,11 @@ namespace BL.SawtoothClient
                     dlist.Add(new MRecord()
                     {
                         uname = user,
-                        bp = obj.bp,
+                        doorSts = obj.doorSts,
+                        humidity = obj.humidity,
+                        lang = obj.lang,
+                        lat = obj.lat,
+                        temp = obj.temp,
                         createdAt = k.CreatedAt
                     });
                 }
