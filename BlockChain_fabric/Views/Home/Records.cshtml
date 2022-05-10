@@ -43,8 +43,11 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
+                                    <th>User</th>
                                     <th>Humidity</th>
                                     <th>Temp</th>
+                                    <th>Status</th>
+                                    <th></th>
                                     <th>Created At</th>
                                 </tr>
                             </thead>
@@ -54,8 +57,11 @@
                                     i++;
                                     <tr>
                                         <td>@i</td>
+                                        <td>@itm.uname</td>
                                         <td>@itm.humidity</td>
                                         <td>@itm.temp</td>
+                                        <td>@itm.doorSts</td>
+                                        <td><a class="btn btn-primary" onclick="window.open("https://www.latlong.net/c/?lat="+@itm.lat+"&long="+@itm.lang+"&output=embed", "_blank", "toolbar=yes,top=500,left=500,width=400,height=400");">Location View</a></td>
                                         <td>@itm.createdAt.ToString("yyyy-MM-dd hh:mm:ss tt")</td>
                                     </tr>
                                 }
